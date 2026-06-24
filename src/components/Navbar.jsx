@@ -9,7 +9,7 @@ const Navbar = () => {
                 <span>Pass</span>
                 <span>&lt;DB&gt;</span>
                 </div>
-            <div className="buttons">
+            <div className="buttons flex items-center gap-2.5">
                 <GithubButton/>
                 <DarkButton/>
             </div>
