@@ -7,7 +7,6 @@ function App() {
     <>
       <div className='min-h-[50vh]'>First</div>
       <div className='min-h-[50vh]'>Second</div>
-      <div className='min-h-[50vh]'>Third</div>
     </>
   )       
 }

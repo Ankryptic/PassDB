@@ -1,15 +1,17 @@
 import React from "react";
-import gitLogo from '../assets/github.svg'
+import GithubButton from "./GithubButton";
+import DarkButton from "./DarkButton";
 
 const Navbar = () => {
     return (
-        <nav className="bg-slate-700 text-white flex items-center justify-around h-10">
-            <div className="logo text-2xl font-bold">PassDB</div>
+        <nav className="font-blackOps text-black flex items-center justify-around h-18">
+            <div className="logo text-2xl font-bold">
+                <span>Pass</span>
+                <span>&lt;DB&gt;</span>
+                </div>
             <div className="buttons">
-                <button className="cursor-pointer flex items-enter gap-3 border border-white rounded-2xl p-1">
-                    <img className="invert w-6" src={gitLogo} alt="GitHub-Image" />
-                    <span>GitHub</span>
-                </button>
+                <GithubButton/>
+                <DarkButton/>
             </div>
         </nav>
     )
