@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css'
+import Password from './components/Password'
 
 function App() {
 
   return (
     <>
-      <div className='min-h-[50vh]'>First</div>
-      <div className='min-h-[50vh]'>Second</div>
+      <Password/>
     </>
   )       
 }
