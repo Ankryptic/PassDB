@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import SaveBtn from "./SaveBtn";
-import { EyeClosedIcon, EyeIcon } from "@animateicons/react/lucide";
+import { EyeClosedIcon, EyeIcon, Trash2Icon, UserPenIcon } from "@animateicons/react/lucide";
 
 
 const Password = () => {
@@ -73,34 +73,76 @@ const Password = () => {
             </div>
             <div className="section-3 w-full flex flex-col items-center justify-center">
 
-                    <div className="w-1/2 bg-[#7880b5] my-2.5 border border-[#c0a9b0] text-center text-[#bcc4db] text-shadow-[2px_1px_5px_black]">
-                        <div className="font-blackOps">Your Passwords</div>
-                    </div>
+                <div className="w-1/2 bg-[#7880b5] my-2.5 border border-[#c0a9b0] text-center text-[#bcc4db] text-shadow-[2px_1px_5px_black]">
+                    <div className="font-blackOps select-none">Your Passwords</div>
+                </div>
                 <div className="w-1/2 bg-[#7880b5] border border-[#c0a9b0]">
-                    <table class="table-fixed">
+                    <table className="table-fixed border-separate">
                         <thead>
                             <tr>
-                                <th>Website</th>
-                                <th>Username</th>
-                                <th>Password</th>
-                                <th>Action</th>
+                                <th className="w-[30%] border-b-2 border-black">Website</th>
+                                <th className="w-[30%] border-b-2 border-black">Username</th>
+                                <th className="w-[30%] border-b-2 border-black">Password</th>
+                                <th className="w-[10%] border-b-2 border-black">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                                <td>Malcolm Lockyer</td>
-                                <td>1961</td>
+                            <tr className="border-2 border-black">
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">Malcolm Lockyer</td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">1961</td>
+                                <td className="font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2.5">
+                                        <UserPenIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                        <Trash2Icon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>Witchy Woman</td>
-                                <td>The Eagles</td>
-                                <td>1972</td>
+                            <tr  className="border border-black border-spacing-y-5">
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">Witchy Woman</td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">The Eagles</td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">1972</td>
+                               <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2.5">
+                                        <UserPenIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                        <Trash2Icon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>Shining Star</td>
-                                <td>Earth, Wind, and Fire</td>
-                                <td>1975</td>
+                            <tr  className="border border-black border-spacing-y-5">
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">Shining Star</td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">Earth, Wind, and Fire</td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">1975</td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2.5">
+                                        <UserPenIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                        <Trash2Icon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
