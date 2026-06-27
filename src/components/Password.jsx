@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import SaveBtn from "./SaveBtn";
-import { EyeClosedIcon, EyeIcon, Trash2Icon, UserPenIcon } from "@animateicons/react/lucide";
+import { EyeClosedIcon, EyeIcon, Trash2Icon, UserPenIcon, CopyIcon } from "@animateicons/react/lucide";
 
 
 const Password = () => {
@@ -87,10 +87,39 @@ const Password = () => {
                             </tr>
                         </thead>
                         <tbody>
+
+                            {/* Tables Starting from Here... */}
                             <tr className="border-2 border-black">
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">Malcolm Lockyer</td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">1961</td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>The Sliding Mr. Bones (Next Stop, Pottersville)</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>Malcolm Lockyer</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>1991</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
                                 <td className="font-semibold border-b-2 border-black py-1">
                                     <div className="flex items-center justify-center gap-2.5">
                                         <UserPenIcon
@@ -106,11 +135,38 @@ const Password = () => {
                                     </div>
                                 </td>
                             </tr>
-                            <tr  className="border border-black border-spacing-y-5">
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">Witchy Woman</td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">The Eagles</td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">1972</td>
-                               <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                            <tr>
+                                <td className="w-[30%] text-white font-semibold border-b-2 border-black py-1 ">
+                                    <div className="flex min-w-full items-center justify-center gap-2">
+                                        <span>Witchy Woman</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
+                                <td className="w-[30%] text-white text-center font-semibold border-b-2 border-black py-1 ">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>The Eagles</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>1972</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
                                     <div className="flex items-center justify-center gap-2.5">
                                         <UserPenIcon
                                             size={20}
@@ -125,10 +181,38 @@ const Password = () => {
                                     </div>
                                 </td>
                             </tr>
-                            <tr  className="border border-black border-spacing-y-5">
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">Shining Star</td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">Earth, Wind, and Fire</td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">1975</td>
+                            <tr>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>Shining Star</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>Earth, Wind, and Firer</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
+                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>1975</span>
+                                        <CopyIcon
+                                            size={20}
+                                            duration={1}
+                                            color="#ffffff"
+                                        />
+                                    </div>
+                                </td>
                                 <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
                                     <div className="flex items-center justify-center gap-2.5">
                                         <UserPenIcon
