@@ -4,8 +4,27 @@ import { EyeClosedIcon, EyeIcon, Trash2Icon, UserPenIcon, CopyIcon } from "@anim
 
 
 const Password = () => {
+    const [form, setForm] = useState({
+        website: '',
+        username: '',
+        password: '',
+        uid: ''
+    });
+    const [passArray, setPassArray] = useState([]);
     const [hide, setHide] = useState(true)
     const passField = useRef()
+
+    const handleSave = () => {
+        setPassArray([...passArray, form]);
+        console.log(passArray)
+        localStorage.setItem('passwords', JSON.stringify([...passArray, form]))
+        setForm({
+            website: '',
+            username: '',
+            password: '',
+            uid: ''
+        })
+    }
 
     useEffect(() => {
         hide ? passField.current.type = "password" : passField.current.type = "text";
@@ -32,7 +51,10 @@ const Password = () => {
                     <input
                         className="bg-white w-full rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
                         placeholder="Enter Website Name"
-                        type="text" id="website" name="website" />
+                        type="text" id="website" name="website"
+                        value={form.website}
+                        onChange={(e) => { setForm({ ...form, website: e.target.value }) }}
+                    />
                 </div>
                 <div className="user-pass flex gap-2.5 w-1/2">
                     <div className="user-field flex items-center gap-2 w-full">
@@ -40,7 +62,10 @@ const Password = () => {
                         <input
                             className="bg-white w-full rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
                             placeholder="Enter Username"
-                            type="text" id="username" name="username" />
+                            type="text" id="username" name="username"
+                            value={form.username}
+                            onChange={(e) => { setForm({ ...form, username: e.target.value }) }}
+                        />
                     </div>
                     <div className="pass-field flex items-center gap-2 w-full">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="password">Password</label>
@@ -49,7 +74,10 @@ const Password = () => {
                                 className="bg-white w-full p-0 rounded-lg focus:outline-none"
                                 placeholder="Enter Password"
                                 ref={passField}
-                                type="password" id="password" name="password" />
+                                type="password" id="password" name="password"
+                                value={form.password}
+                                onChange={(e) => { setForm({ ...form, password: e.target.value }) }}
+                            />
                             <span className="cursor-pointer" onClick={toggleHide}>
                                 {hide ? <EyeIcon
                                     size={18}
@@ -65,8 +93,15 @@ const Password = () => {
                         </div>
                     </div>
                     <div className="save-btn">
-                        <div>
+                        {/* <div>
                             <SaveBtn />
+                        </div> */}
+                        <div className="git-btn cursor-pointer border-2 border-black bg-[#c0a9b0] pb-1 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-1 active:translate-y-1">
+                            <button className="cursor-pointer bg-[#7880b5] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-enter gap-3 border border-white font-bold  p-1 py-0"
+                                onClick={handleSave}
+                            >
+                                <span>Save</span>
+                            </button>
                         </div>
                     </div>
                 </div>
