@@ -42,12 +42,20 @@ const Password = () => {
         setHide(!hide)
     }
 
+    const handleCopy = (text) => {
+        navigator.clipboard.writeText(text)
+    }
+
     const handleDelete = (uid) => {
         let tempArr = passArray.filter((data) => {
             return data.uid !== uid
         })
         localStorage.setItem('passwords', JSON.stringify(tempArr))
         setPassArray(tempArr)
+    }
+
+    const handleEdit = () => {
+
     }
 
     return (
@@ -149,6 +157,7 @@ const Password = () => {
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
+                                                onClick={() => handleCopy(data.website)}
                                             />
                                         </div>
                                     </td>
@@ -159,6 +168,7 @@ const Password = () => {
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
+                                                onClick={() => handleCopy(data.username)}
                                             />
                                         </div>
                                     </td>
@@ -169,6 +179,7 @@ const Password = () => {
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
+                                                onClick={() => handleCopy(data.password)}
                                             />
                                         </div>
                                     </td>
@@ -178,6 +189,7 @@ const Password = () => {
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
+                                                onClick={() => handleEdit(data.uid)}
                                             />
                                             <Trash2Icon
                                                 size={20}
