@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import SaveBtn from "./SaveBtn";
 import { EyeClosedIcon, EyeIcon, Trash2Icon, UserPenIcon, CopyIcon } from "@animateicons/react/lucide";
 
@@ -28,7 +29,7 @@ const Password = () => {
             website: '',
             username: '',
             password: '',
-            uid: ''
+            uid: uuidv4()
         })
     }
 
@@ -131,7 +132,7 @@ const Password = () => {
 
                             {/* Tables Starting from Here... */}
                             {passArray.length > 0 ? passArray.map((data) => {
-                                return <tr className="border-2 border-black">
+                                return <tr key={data.uid} className="border-2 border-black">
                                     <td className="w-[30%] text-center text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.website}</span>
