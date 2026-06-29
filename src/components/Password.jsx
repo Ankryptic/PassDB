@@ -23,13 +23,14 @@ const Password = () => {
 
 
     const handleSave = () => {
+        form.uid = uuidv4()
         setPassArray([...passArray, form]);
         localStorage.setItem('passwords', JSON.stringify([...passArray, form]))
         setForm({
             website: '',
             username: '',
             password: '',
-            uid: uuidv4()
+            uid: ''
         })
     }
 
@@ -39,6 +40,14 @@ const Password = () => {
 
     const toggleHide = () => {
         setHide(!hide)
+    }
+
+    const handleDelete = (uid) => {
+        let tempArr = passArray.filter((data) => {
+            return data.uid !== uid
+        })
+        localStorage.setItem('passwords', JSON.stringify(tempArr))
+        setPassArray(tempArr)
     }
 
     return (
@@ -174,13 +183,14 @@ const Password = () => {
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
+                                                onClick={() => handleDelete(data.uid)}
                                             />
                                         </div>
                                     </td>
                                 </tr>
                             })
                             : <tr>
-                                <td colSpan={4}>
+                                <td colSpan={4} className="font-blackOps text-center p-7">
                                     Nothing To Show
                                 </td>
                             </tr>
