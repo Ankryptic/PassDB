@@ -4,19 +4,25 @@ import { EyeClosedIcon, EyeIcon, Trash2Icon, UserPenIcon, CopyIcon } from "@anim
 
 
 const Password = () => {
+    const handlePasswords = () => {
+        let tempArr = localStorage.getItem('passwords');
+        return tempArr !== null ? JSON.parse(tempArr) : [];
+    }
+
     const [form, setForm] = useState({
         website: '',
         username: '',
         password: '',
         uid: ''
     });
-    const [passArray, setPassArray] = useState([]);
+    const [passArray, setPassArray] = useState(handlePasswords);
     const [hide, setHide] = useState(true)
     const passField = useRef()
 
+
+
     const handleSave = () => {
         setPassArray([...passArray, form]);
-        console.log(passArray)
         localStorage.setItem('passwords', JSON.stringify([...passArray, form]))
         setForm({
             website: '',
@@ -112,7 +118,7 @@ const Password = () => {
                     <div className="font-blackOps select-none">Your Passwords</div>
                 </div>
                 <div className="w-1/2 bg-[#7880b5] border border-[#c0a9b0]">
-                    <table className="table-fixed border-separate">
+                    <table className="table-fixed border-separate w-full">
                         <thead>
                             <tr>
                                 <th className="w-[30%] border-b-2 border-black">Website</th>
@@ -124,145 +130,62 @@ const Password = () => {
                         <tbody>
 
                             {/* Tables Starting from Here... */}
-                            <tr className="border-2 border-black">
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span>The Sliding Mr. Bones (Next Stop, Pottersville)</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span>Malcolm Lockyer</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span>1991</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2.5">
-                                        <UserPenIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                        <Trash2Icon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="w-[30%] text-white font-semibold border-b-2 border-black py-1 ">
-                                    <div className="flex min-w-full items-center justify-center gap-2">
-                                        <span>Witchy Woman</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="w-[30%] text-white text-center font-semibold border-b-2 border-black py-1 ">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span>The Eagles</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span>1972</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2.5">
-                                        <UserPenIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                        <Trash2Icon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
+                            {passArray.length > 0 ? passArray.map((data) => {
+                                return <tr className="border-2 border-black">
+                                    <td className="w-[30%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                        <div className="flex items-center justify-center gap-2">
+                                            <span>{data.website}</span>
+                                            <CopyIcon
+                                                size={20}
+                                                duration={1}
+                                                color="#ffffff"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td className="w-[30%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                        <div className="flex items-center justify-center gap-2">
+                                            <span>{data.username}</span>
+                                            <CopyIcon
+                                                size={20}
+                                                duration={1}
+                                                color="#ffffff"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td className="w-[30%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                        <div className="flex items-center justify-center gap-2">
+                                            <span>{data.password}</span>
+                                            <CopyIcon
+                                                size={20}
+                                                duration={1}
+                                                color="#ffffff"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td className="w-[10%] font-semibold border-b-2 border-black py-1">
+                                        <div className="flex items-center justify-center gap-2.5">
+                                            <UserPenIcon
+                                                size={20}
+                                                duration={1}
+                                                color="#ffffff"
+                                            />
+                                            <Trash2Icon
+                                                size={20}
+                                                duration={1}
+                                                color="#ffffff"
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
+                            })
+                            : <tr>
+                                <td colSpan={4}>
+                                    Nothing To Show
                                 </td>
                             </tr>
-                            <tr>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
+                        }
 
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span>Shining Star</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span>Earth, Wind, and Firer</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span>1975</span>
-                                        <CopyIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="w-[25%] text-center text-white font-semibold border-b-2 border-black py-1">
-                                    <div className="flex items-center justify-center gap-2.5">
-                                        <UserPenIcon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                        <Trash2Icon
-                                            size={20}
-                                            duration={1}
-                                            color="#ffffff"
-                                        />
-                                    </div>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
 
