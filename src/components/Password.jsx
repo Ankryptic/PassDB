@@ -22,16 +22,21 @@ const Password = () => {
         password: '',
         uid: ''
     });
+    const [deleteData, setDeleteData] = useState({
+        website: 'Google',
+        username: 'Ankit',
+        password: 'Password',
+        uid: ''
+    });
     const [passArray, setPassArray] = useState(handlePasswords);
     const [hide, setHide] = useState(true)
     const passField = useRef()
     const [editSecVisibile, setEditSecVisible] = useState(false)
-
+    const [deleteSecVisibile, setDeleteSecVisible] = useState(false)
 
     const handleSave = () => {
         form.uid = uuidv4()
         setPassArray([...passArray, form]);
-        // localStorage.setItem('passwords', JSON.stringify([...passArray, form]))
         setForm({
             website: '',
             username: '',
@@ -56,14 +61,26 @@ const Password = () => {
         navigator.clipboard.writeText(text)
     }
 
-    const handleDelete = (uid) => {
-        let tempArr = passArray.filter((data) => {
-            return data.uid !== uid
+    const handleDelete = (data) => {
+        setDeleteData({
+            website: data.website,
+            username: data.username,
+            password: data.password,
+            uid: data.uid
         })
-        localStorage.setItem('passwords', JSON.stringify(tempArr))
-        setPassArray(tempArr)
+
+        setDeleteSecVisible(true)
     }
 
+    const handleConfirm = () => {
+        let tempArr = passArray.filter((data) => {
+            return data.uid !== deleteData.uid
+        })
+
+        setPassArray(tempArr)
+        setDeleteSecVisible(false)
+    }
+ 
     const handleEdit = (data) => {
         setEditSecVisible(true)
         setEditForm({
@@ -92,8 +109,16 @@ const Password = () => {
         })
     }
 
-    const handleCancel = () => {
-        setEditSecVisible(false)
+    const handleCancel = (e) => {
+        const name = e.currentTarget.name;
+
+        if(name === 'Edit'){
+            setEditSecVisible(false)
+        }
+        else if(name === 'delete'){
+            setDeleteSecVisible(false)
+        }
+
     }
 
     return (
@@ -233,7 +258,7 @@ const Password = () => {
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
-                                                onClick={() => handleDelete(data.uid)}
+                                                onClick={() => handleDelete(data)}
                                             />
                                         </div>
                                     </td>
@@ -253,7 +278,44 @@ const Password = () => {
                 </div>
             </div>
 
-            <div className={`editSection ${editSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen absolute z-10 backdrop-blur-lg top-0 justify-center pt-28 `}>
+            <div className={`delete-section ${deleteSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen absolute z-10 backdrop-blur-lg top-0 justify-center pt-28`}>
+                <div className="w-1/2">
+                    <div className="w-full text-center text-3xl font-bold text-red-600 underline">DELETE</div>
+                    <div className="w-full flex flex-col items-center justify-center py-7">
+                        <div className="w-1/2 flex gap-3.5">
+                            <span>Website:</span>
+                            <span className="text-red-600">{deleteData.website}</span>
+                        </div>
+                        <div className="w-1/2 flex gap-3.5">
+                            <span>Username:</span>
+                            <span className="text-red-600">{deleteData.username}</span>
+                        </div>
+                        <div className="w-1/2 flex  gap-3.5">
+                            <span>Password:</span>
+                            <span className="text-red-600">{deleteData.password}</span>
+                        </div>
+
+                        <div className="buttons flex items-center gap-5 mt-10">
+
+                            {/* Confirm Button */}
+                            <div className="Confirm-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5">
+                                <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleConfirm}>
+                                    <span>Confirm</span>
+                                </button>
+                            </div>
+
+                            {/* Cancel Button */}
+                            <div className="Cancel-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5" name='delete'>
+                                <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" name="delete" onClick={handleCancel}>
+                                    <span>Cancel</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className={`editSection absolute ${editSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen z-10 backdrop-blur-lg top-0 justify-center pt-28`}>
                 <div className="w-1/3 space-y-2.5">
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website-edit">Website</label>
@@ -292,8 +354,8 @@ const Password = () => {
                         </div>
 
                         {/* Cancel Button */}
-                        <div className="update-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5">
-                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleCancel}>
+                        <div className="Cancel-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5" >
+                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" name="Edit" onClick={handleCancel}>
                                 <span>Cancel</span>
                             </button>
                         </div>
