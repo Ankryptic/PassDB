@@ -16,10 +16,16 @@ const Password = () => {
         password: '',
         uid: ''
     });
+    const [editForm, setEditForm] = useState({
+        website: '',
+        username: '',
+        password: '',
+        uid: ''
+    });
     const [passArray, setPassArray] = useState(handlePasswords);
     const [hide, setHide] = useState(true)
     const passField = useRef()
-
+    const [editSecVisibile, setEditSecVisible] = useState(false)
 
 
     const handleSave = () => {
@@ -54,8 +60,31 @@ const Password = () => {
         setPassArray(tempArr)
     }
 
-    const handleEdit = () => {
+    const handleEdit = (data) => {
+        setEditSecVisible(true)
+        setEditForm({
+            website: data.website,
+            username: data.username,
+            password: data.password,
+            uid: data.uid
+        })
+    }
 
+    const handleUpdate = () => {
+
+    }
+
+    const handleEditChange = (e) => {
+        const { name, value } = e.target
+        
+        setEditForm({
+            ...editForm, 
+            [name] : value
+        })
+    } 
+
+    const handleCancel = () => {
+        setEditSecVisible(false)
     }
 
     return (
@@ -189,7 +218,7 @@ const Password = () => {
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
-                                                onClick={() => handleEdit(data.uid)}
+                                                onClick={() => handleEdit(data)}
                                             />
                                             <Trash2Icon
                                                 size={20}
@@ -215,47 +244,47 @@ const Password = () => {
                 </div>
             </div>
 
-            <div className="edit-section font-blackOps w-full h-screen absolute z-10 backdrop-blur-lg top-0 flex justify-center pt-28">
+            <div className={`editSection ${ editSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen absolute z-10 backdrop-blur-lg top-0 justify-center pt-28 `}>
                 <div className="w-1/3 space-y-2.5">
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website-edit">Website</label>
                         <input
                             className="bg-white w-[80%] rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black "
-                            type="text" id="website" name="website"
-                            value=''
-                            onChange=''
+                            type="text" id="website-edit" name="website"
+                            value={editForm.website}
+                            onChange={handleEditChange}
                         />
                     </div>
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="username-edit">Username</label>
                         <input
                             className="bg-white w-[80%] rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
-                            type="text" id="website" name="website"
-                            value=''
-                            onChange=''
+                            type="text" id="username-edit" name="username"
+                            value={editForm.username}
+                            onChange={handleEditChange}
                         />
                     </div>
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="password-edit">Password</label>
                         <input
                             className="bg-white w-[80%] rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
-                            type="text" id="website" name="website"
-                            value=''
-                            onChange=''
+                            type="text" id="password-edit" name="password"
+                            value={editForm.password}
+                        onChange={handleEditChange}
                         />
                     </div>
                     <div className="buttons flex items-center gap-5">
 
                         {/* Update Button */}
                         <div className="update-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5">
-                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px">
+                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleUpdate}>
                                 <span>Update</span>
                             </button>
                         </div>
 
                         {/* Cancel Button */}
                         <div className="update-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5">
-                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px">
+                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleCancel}>
                                 <span>Cancel</span>
                             </button>
                         </div>
