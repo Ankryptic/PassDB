@@ -71,17 +71,25 @@ const Password = () => {
     }
 
     const handleUpdate = () => {
+        let newArr = passArray.filter(element => {
+            return element.uid !== editForm.uid;
+        });
 
+        setPassArray([...newArr, editForm])
+        localStorage.setItem( 'passwords', '');
+        localStorage.setItem( 'passwords', JSON.stringify([...newArr, editForm]))
+        setEditSecVisible(false)
+        console.log(passArray)
     }
 
     const handleEditChange = (e) => {
         const { name, value } = e.target
-        
+
         setEditForm({
-            ...editForm, 
-            [name] : value
+            ...editForm,
+            [name]: value
         })
-    } 
+    }
 
     const handleCancel = () => {
         setEditSecVisible(false)
@@ -244,7 +252,7 @@ const Password = () => {
                 </div>
             </div>
 
-            <div className={`editSection ${ editSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen absolute z-10 backdrop-blur-lg top-0 justify-center pt-28 `}>
+            <div className={`editSection ${editSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen absolute z-10 backdrop-blur-lg top-0 justify-center pt-28 `}>
                 <div className="w-1/3 space-y-2.5">
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website-edit">Website</label>
@@ -270,7 +278,7 @@ const Password = () => {
                             className="bg-white w-[80%] rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
                             type="text" id="password-edit" name="password"
                             value={editForm.password}
-                        onChange={handleEditChange}
+                            onChange={handleEditChange}
                         />
                     </div>
                     <div className="buttons flex items-center gap-5">
