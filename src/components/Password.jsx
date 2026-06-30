@@ -122,7 +122,7 @@ const Password = () => {
     }
 
     return (
-        <div className="h-[82vh]">
+        <div className="min-h-[82vh]">
             <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center">
                 <span className="text-6xl select-none">PassDB</span>
                 <div className="flex flex-col items-start text-sm leading-2.5 select-none">
@@ -278,7 +278,7 @@ const Password = () => {
                 </div>
             </div>
 
-            <div className={`delete-section ${deleteSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen absolute z-10 backdrop-blur-lg top-0 justify-center pt-28`}>
+            <div className={`delete-section ${deleteSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen fixed inset-0 z-10 backdrop-blur-lg justify-center pt-28`}>
                 <div className="w-1/2">
                     <div className="w-full text-center text-3xl font-bold text-red-600 underline">DELETE</div>
                     <div className="w-full flex flex-col items-center justify-center py-7">
@@ -315,7 +315,7 @@ const Password = () => {
                 </div>
             </div>
 
-            <div className={`editSection absolute ${editSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen z-10 backdrop-blur-lg top-0 justify-center pt-28`}>
+            <div className={`editSection fixed inset-0 ${editSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen z-10 backdrop-blur-lg justify-center pt-28`}>
                 <div className="w-1/3 space-y-2.5">
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website-edit">Website</label>
