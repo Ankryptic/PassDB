@@ -31,7 +31,7 @@ const Password = () => {
     const handleSave = () => {
         form.uid = uuidv4()
         setPassArray([...passArray, form]);
-        localStorage.setItem('passwords', JSON.stringify([...passArray, form]))
+        // localStorage.setItem('passwords', JSON.stringify([...passArray, form]))
         setForm({
             website: '',
             username: '',
@@ -39,6 +39,10 @@ const Password = () => {
             uid: ''
         })
     }
+
+    useEffect(() => {
+        localStorage.setItem('passwords', JSON.stringify(passArray))
+    }, [passArray])
 
     useEffect(() => {
         hide ? passField.current.type = "password" : passField.current.type = "text";
@@ -71,15 +75,12 @@ const Password = () => {
     }
 
     const handleUpdate = () => {
-        let newArr = passArray.filter(element => {
-            return element.uid !== editForm.uid;
+        let updatedArr = passArray.map(item => {
+            return item.uid === editForm.uid ? editForm : item
         });
 
-        setPassArray([...newArr, editForm])
-        localStorage.setItem( 'passwords', '');
-        localStorage.setItem( 'passwords', JSON.stringify([...newArr, editForm]))
+        setPassArray(updatedArr)
         setEditSecVisible(false)
-        console.log(passArray)
     }
 
     const handleEditChange = (e) => {
