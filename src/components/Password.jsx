@@ -35,14 +35,19 @@ const Password = () => {
     const [deleteSecVisibile, setDeleteSecVisible] = useState(false)
 
     const handleSave = () => {
-        form.uid = uuidv4()
-        setPassArray([...passArray, form]);
-        setForm({
-            website: '',
-            username: '',
-            password: '',
-            uid: ''
-        })
+        if(form.website !== '' && form.password !== '' && form.password !== ''){
+            form.uid = uuidv4()
+            setPassArray([...passArray, form]);
+            setForm({
+                website: '',
+                username: '',
+                password: '',
+                uid: ''
+            })
+        }
+        else{
+            return;
+        }
     }
 
     useEffect(() => {
@@ -122,7 +127,7 @@ const Password = () => {
     }
 
     return (
-        <div className="min-h-[82vh]">
+        <div className="min-h-[80vh] mb-5">
             <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center">
                 <span className="text-6xl select-none">PassDB</span>
                 <div className="flex flex-col items-start text-sm leading-2.5 select-none">
