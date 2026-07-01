@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import SaveBtn from "./SaveBtn";
 import { EyeClosedIcon, EyeIcon, Trash2Icon, UserPenIcon, CopyIcon } from "@animateicons/react/lucide";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Password = () => {
@@ -35,7 +36,7 @@ const Password = () => {
     const [deleteSecVisibile, setDeleteSecVisible] = useState(false)
 
     const handleSave = () => {
-        if(form.website !== '' && form.password !== '' && form.password !== ''){
+        if (form.website !== '' && form.password !== '' && form.password !== '') {
             form.uid = uuidv4()
             setPassArray([...passArray, form]);
             setForm({
@@ -45,7 +46,7 @@ const Password = () => {
                 uid: ''
             })
         }
-        else{
+        else {
             return;
         }
     }
@@ -84,8 +85,20 @@ const Password = () => {
 
         setPassArray(tempArr)
         setDeleteSecVisible(false)
+
+        toast('Delete Succesfully!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
     }
- 
+
     const handleEdit = (data) => {
         setEditSecVisible(true)
         setEditForm({
@@ -117,10 +130,10 @@ const Password = () => {
     const handleCancel = (e) => {
         const name = e.currentTarget.name;
 
-        if(name === 'Edit'){
+        if (name === 'Edit') {
             setEditSecVisible(false)
         }
-        else if(name === 'delete'){
+        else if (name === 'delete') {
             setDeleteSecVisible(false)
         }
 
@@ -367,6 +380,19 @@ const Password = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition="Bounce"
+            />
         </div>
     )
 }
