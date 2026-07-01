@@ -37,6 +37,7 @@ const Password = () => {
 
     const handleSave = () => {
         if (form.website !== '' && form.password !== '' && form.password !== '') {
+            toast('Saved')
             form.uid = uuidv4()
             setPassArray([...passArray, form]);
             setForm({
@@ -45,6 +46,7 @@ const Password = () => {
                 password: '',
                 uid: ''
             })
+            
         }
         else {
             return;
@@ -64,6 +66,8 @@ const Password = () => {
     }
 
     const handleCopy = (text) => {
+        toast('Copied to Clipboard')
+
         navigator.clipboard.writeText(text)
     }
 
@@ -79,24 +83,14 @@ const Password = () => {
     }
 
     const handleConfirm = () => {
+        toast('Deleted')
+
         let tempArr = passArray.filter((data) => {
             return data.uid !== deleteData.uid
         })
 
         setPassArray(tempArr)
         setDeleteSecVisible(false)
-
-        toast('Delete Succesfully!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-        });
     }
 
     const handleEdit = (data) => {
@@ -110,6 +104,7 @@ const Password = () => {
     }
 
     const handleUpdate = () => {
+        toast('Updated')
         let updatedArr = passArray.map(item => {
             return item.uid === editForm.uid ? editForm : item
         });
@@ -128,12 +123,15 @@ const Password = () => {
     }
 
     const handleCancel = (e) => {
+        
         const name = e.currentTarget.name;
 
         if (name === 'Edit') {
+            toast('Cancelled Changes')
             setEditSecVisible(false)
         }
         else if (name === 'delete') {
+            toast('Cancelled Deletion')
             setDeleteSecVisible(false)
         }
 
@@ -141,6 +139,9 @@ const Password = () => {
 
     return (
         <div className="min-h-[80vh] mb-5">
+
+            <ToastContainer/>
+
             <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center">
                 <span className="text-6xl select-none">PassDB</span>
                 <div className="flex flex-col items-start text-sm leading-2.5 select-none">
@@ -380,19 +381,8 @@ const Password = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-                transition="Bounce"
-            />
+
+
         </div>
     )
 }
