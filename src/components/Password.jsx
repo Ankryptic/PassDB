@@ -249,7 +249,7 @@ const Password = () => {
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.website}</span>
                                             <CopyIcon
-                                                size={18}
+                                                size={16}
                                                 duration={1}
                                                 color="#ffffff"
                                                 onClick={() => handleCopy(data.website)}
@@ -260,7 +260,7 @@ const Password = () => {
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.username}</span>
                                             <CopyIcon
-                                                size={18}
+                                                size={16}
                                                 duration={1}
                                                 color="#ffffff"
                                                 onClick={() => handleCopy(data.username)}
@@ -271,7 +271,7 @@ const Password = () => {
                                         <div className="flex items-center justify-center gap-2">
                                             <span className="cursor-pointer" onClick={(e) => togglePass(e, data.password)}>********</span>
                                             <CopyIcon
-                                                size={18}
+                                                size={16}
                                                 duration={1}
                                                 color="#ffffff"
                                                 onClick={() => handleCopy(data.password)}
