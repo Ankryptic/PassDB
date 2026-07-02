@@ -46,7 +46,7 @@ const Password = () => {
                 password: '',
                 uid: ''
             })
-            
+
         }
         else {
             return;
@@ -103,6 +103,17 @@ const Password = () => {
         })
     }
 
+    const togglePass = (e , pass) => {
+        let innerText = e.target.innerText;
+        console.log(innerText)
+        if(innerText === '********'){
+            e.target.innerText = pass
+        }
+        else{
+            e.target.innerText = '********'
+        }
+    }
+
     const handleUpdate = () => {
         toast('Updated')
         let updatedArr = passArray.map(item => {
@@ -123,7 +134,7 @@ const Password = () => {
     }
 
     const handleCancel = (e) => {
-        
+
         const name = e.currentTarget.name;
 
         if (name === 'Edit') {
@@ -140,7 +151,7 @@ const Password = () => {
     return (
         <div className="min-h-[80vh] mb-5">
 
-            <ToastContainer/>
+            <ToastContainer />
 
             <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center">
                 <span className="text-6xl select-none">PassDB</span>
@@ -151,6 +162,7 @@ const Password = () => {
                     <span>Manager</span>
                 </div>
             </div>
+
             <div className="section-2 font-blackOps w-full flex flex-col items-center gap-2.5 mb-10">
                 <div className="website-field flex items-center gap-2 w-1/2">
                     <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website">Website</label>
@@ -212,6 +224,7 @@ const Password = () => {
                     </div>
                 </div>
             </div>
+
             <div className="section-3 w-full flex flex-col items-center justify-center">
 
                 <div className="w-1/2 bg-[#7880b5] my-2.5 border border-[#c0a9b0] text-center text-[#bcc4db] text-shadow-[2px_1px_5px_black]">
@@ -221,44 +234,44 @@ const Password = () => {
                     <table className="table-fixed border-separate w-full">
                         <thead>
                             <tr>
-                                <th className="w-[30%] border-b-2 border-black">Website</th>
-                                <th className="w-[30%] border-b-2 border-black">Username</th>
-                                <th className="w-[30%] border-b-2 border-black">Password</th>
-                                <th className="w-[10%] border-b-2 border-black">Actions</th>
+                                <th className="w-[30%] border-b-2 border-black text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Website</th>
+                                <th className="w-[30%] border-b-2 border-black text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Username</th>
+                                <th className="w-[30%] border-b-2 border-black text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Password</th>
+                                <th className="w-[10%] border-b-2 border-black text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             {/* Tables Starting from Here... */}
                             {passArray.length > 0 ? passArray.map((data) => {
-                                return <tr key={data.uid} className="border-2 border-black">
-                                    <td className="w-[30%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                return <tr key={data.uid} className="border-2 border-black select-none">
+                                    <td className="w-[30%] text-center text-black font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.website}</span>
                                             <CopyIcon
-                                                size={20}
+                                                size={18}
                                                 duration={1}
                                                 color="#ffffff"
                                                 onClick={() => handleCopy(data.website)}
                                             />
                                         </div>
                                     </td>
-                                    <td className="w-[30%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <td className="w-[30%] text-center text-black font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.username}</span>
                                             <CopyIcon
-                                                size={20}
+                                                size={18}
                                                 duration={1}
                                                 color="#ffffff"
                                                 onClick={() => handleCopy(data.username)}
                                             />
                                         </div>
                                     </td>
-                                    <td className="w-[30%] text-center text-white font-semibold border-b-2 border-black py-1">
+                                    <td className="w-[30%] text-center text-black font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
-                                            <span>{data.password}</span>
+                                            <span className="cursor-pointer" onClick={(e) => togglePass(e, data.password)}>********</span>
                                             <CopyIcon
-                                                size={20}
+                                                size={18}
                                                 duration={1}
                                                 color="#ffffff"
                                                 onClick={() => handleCopy(data.password)}
