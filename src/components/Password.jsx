@@ -103,13 +103,13 @@ const Password = () => {
         })
     }
 
-    const togglePass = (e , pass) => {
+    const togglePass = (e, pass) => {
         let innerText = e.target.innerText;
         console.log(innerText)
-        if(innerText === '********'){
+        if (innerText === '********') {
             e.target.innerText = pass
         }
-        else{
+        else {
             e.target.innerText = '********'
         }
     }
@@ -149,11 +149,11 @@ const Password = () => {
     }
 
     return (
-        <div className="min-h-[80vh] mb-5">
+        <div className="min-h-[78vh] mb-5">
 
             <ToastContainer />
 
-            <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center">
+            <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center mt-5">
                 <span className="text-6xl select-none">PassDB</span>
                 <div className="flex flex-col items-start text-sm leading-2.5 select-none">
                     <span>Your</span>
@@ -249,6 +249,7 @@ const Password = () => {
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.website}</span>
                                             <CopyIcon
+                                                className="cursor-pointer"
                                                 size={16}
                                                 duration={1}
                                                 color="#ffffff"
@@ -260,6 +261,7 @@ const Password = () => {
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.username}</span>
                                             <CopyIcon
+                                                className="cursor-pointer"
                                                 size={16}
                                                 duration={1}
                                                 color="#ffffff"
@@ -271,6 +273,7 @@ const Password = () => {
                                         <div className="flex items-center justify-center gap-2">
                                             <span className="cursor-pointer" onClick={(e) => togglePass(e, data.password)}>********</span>
                                             <CopyIcon
+                                                className="cursor-pointer"
                                                 size={16}
                                                 duration={1}
                                                 color="#ffffff"
@@ -281,12 +284,14 @@ const Password = () => {
                                     <td className="w-[10%] font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2.5">
                                             <UserPenIcon
+                                                className="cursor-pointer"
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
                                                 onClick={() => handleEdit(data)}
                                             />
                                             <Trash2Icon
+                                                className="cursor-pointer"
                                                 size={20}
                                                 duration={1}
                                                 color="#ffffff"
