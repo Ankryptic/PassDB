@@ -219,7 +219,7 @@ const Password = () => {
                             <SaveBtn />
                         </div> */}
                         <div className="git-btn cursor-pointer border-2 border-black bg-[#c0a9b0] pb-1 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-1 active:translate-y-1">
-                            <button className="cursor-pointer bg-[#7880b5] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-enter gap-3 border border-white font-bold  p-1 py-0"
+                            <button className="cursor-pointer bg-[#7880b5] dark:bg-[#010510] text-[#bcc4db] text-shadow-[2px_1px_5px_black] dark:text-shadow-none flex items-enter gap-3 border border-white font-bold  p-1 py-0"
                                 onClick={handleSave}
                             >
                                 <span>Save</span>
@@ -340,14 +340,14 @@ const Password = () => {
 
                             {/* Confirm Button */}
                             <div className="Confirm-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5">
-                                <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleConfirm}>
+                                <button className="cursor-pointer w-20 bg-[#7880b5] dark:bg-[#010510] dark:text-white flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleConfirm}>
                                     <span>Confirm</span>
                                 </button>
                             </div>
 
                             {/* Cancel Button */}
                             <div className="Cancel-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5" name='delete'>
-                                <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" name="delete" onClick={handleCancel}>
+                                <button className="cursor-pointer w-20 bg-[#7880b5] dark:bg-[#010510] dark:text-white flex items-enter justify-center border-4 border-white  p-1 py-px" name="delete" onClick={handleCancel}>
                                     <span>Cancel</span>
                                 </button>
                             </div>
@@ -389,14 +389,14 @@ const Password = () => {
 
                         {/* Update Button */}
                         <div className="update-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5">
-                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleUpdate}>
+                            <button className="cursor-pointer w-20 bg-[#7880b5] dark:bg-[#010510] dark:text-white flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleUpdate}>
                                 <span>Update</span>
                             </button>
                         </div>
 
                         {/* Cancel Button */}
-                        <div className="Cancel-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5" >
-                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" name="Edit" onClick={handleCancel}>
+                        <div className="Cancel-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0]  pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5" >
+                            <button className="cursor-pointer w-20 bg-[#7880b5] dark:bg-[#010510] dark:text-white flex items-enter justify-center border-4 border-white  p-1 py-px" name="Edit" onClick={handleCancel}>
                                 <span>Cancel</span>
                             </button>
                         </div>
