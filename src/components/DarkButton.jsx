@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { MoonIcon, SunIcon } from "@animateicons/react/lucide"
 
+const Switch_mode = document.querySelector('html')
+
 const DarkButton = () => {
     const [darkmode, setDarkmode] = useState(false)
 
     const toggleDark = () =>{
         setDarkmode(!darkmode)
+        Switch_mode.classList.toggle('dark');
     }
 
     return (

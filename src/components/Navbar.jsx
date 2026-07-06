@@ -5,7 +5,7 @@ import DarkButton from "./DarkButton";
 const Navbar = () => {
     return (
         <nav className="font-blackOps text-black flex items-center justify-around h-18">
-            <div className="logo text-2xl font-bold">
+            <div className="logo text-2xl font-bold dark:text-[#ffffff]">
                 <span>Pass</span>
                 <span>&lt;DB&gt;</span>
                 </div>
