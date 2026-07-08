@@ -174,7 +174,7 @@ const Password = () => {
                         onChange={(e) => { setForm({ ...form, website: e.target.value }) }}
                     />
                 </div>
-                <div className="user-pass md:flex gap-2.5 w-full md:w-1/2">
+                <form className="user-pass md:flex gap-2.5 w-full md:w-1/2">
                     <div className="user-field flex items-center gap-2 w-full p-2.5 md:p-0">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="username">Username</label>
                         <input
@@ -194,6 +194,7 @@ const Password = () => {
                                 ref={passField}
                                 type="password" id="password" name="password"
                                 value={form.password}
+                                autoComplete="password"
                                 onChange={(e) => { setForm({ ...form, password: e.target.value }) }}
                             />
                             <span className="cursor-pointer" onClick={toggleHide}>
@@ -226,7 +227,7 @@ const Password = () => {
                             </button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
             <div className="section-3 w-full flex flex-col items-center justify-center">
