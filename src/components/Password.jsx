@@ -153,7 +153,7 @@ const Password = () => {
 
             <ToastContainer />
 
-            <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center mt-5">
+            <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center mt-5 mb-5 md:mb-0">
                 <span className="text-6xl select-none">PassDB</span>
                 <div className="flex flex-col items-start text-sm leading-2.5 select-none">
                     <span>Your</span>
@@ -163,8 +163,8 @@ const Password = () => {
                 </div>
             </div>
 
-            <div className="section-2 font-blackOps w-full flex flex-col items-center gap-2.5 mb-10">
-                <div className="website-field flex items-center gap-2 w-1/2">
+            <div className="section-2 font-blackOps w-full md:flex flex-col items-center gap-2.5 mb-10">
+                <div className="website-field flex items-center gap-2 w-full md:w-1/2 p-2.5 md:p-0">
                     <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website">Website</label>
                     <input
                         className="bg-white dark:bg-black dark:text-white w-full rounded-lg px-2 py-px focus:outline-3 focus:outline-black dark:focus:outline-white"
@@ -174,8 +174,8 @@ const Password = () => {
                         onChange={(e) => { setForm({ ...form, website: e.target.value }) }}
                     />
                 </div>
-                <div className="user-pass flex gap-2.5 w-1/2">
-                    <div className="user-field flex items-center gap-2 w-full">
+                <div className="user-pass md:flex gap-2.5 w-full md:w-1/2">
+                    <div className="user-field flex items-center gap-2 w-full p-2.5 md:p-0">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="username">Username</label>
                         <input
                             className="bg-white dark:bg-black dark:text-white w-full rounded-lg px-2 py-px focus:outline-3 focus:outline-black dark:focus:outline-white"
@@ -185,7 +185,7 @@ const Password = () => {
                             onChange={(e) => { setForm({ ...form, username: e.target.value }) }}
                         />
                     </div>
-                    <div className="pass-field flex items-center gap-2 w-full">
+                    <div className="pass-field flex items-center gap-2 w-full p-2.5 md:p-0">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="password">Password</label>
                         <div className="flex items-center bg-white dark:bg-black dark:text-white rounded-lg overflow-hidden w-full h-fit px-2 py-px focus-within:outline-3 focus:outline-black dark:focus-within:outline-white">
                             <input
@@ -214,12 +214,12 @@ const Password = () => {
 
                         </div>
                     </div>
-                    <div className="save-btn">
+                    <div className="save-btn w-20 md:w-fit mx-2.5 h-8">
                         {/* <div>
                             <SaveBtn />
                         </div> */}
-                        <div className="git-btn cursor-pointer border-2 border-black bg-[#c0a9b0] pb-1 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-1 active:translate-y-1">
-                            <button className="cursor-pointer bg-[#7880b5] dark:bg-[#010510] text-[#bcc4db] text-shadow-[2px_1px_5px_black] dark:text-shadow-none flex items-enter gap-3 border border-white font-bold  p-1 py-0"
+                        <div className="git-btn cursor-pointer border-2 border-black bg-[#c0a9b0] pb-1 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-1 active:translate-y-1 w-full">
+                            <button className="cursor-pointer bg-[#7880b5] dark:bg-[#010510] text-[#bcc4db] text-shadow-[2px_1px_5px_black] dark:text-shadow-none flex justify-center items-enter gap-3 border border-white font-bold w-full p-1 py-0"
                                 onClick={handleSave}
                             >
                                 <span>Save</span>
@@ -231,10 +231,12 @@ const Password = () => {
 
             <div className="section-3 w-full flex flex-col items-center justify-center">
 
-                <div className="w-1/2 bg-[#7880b5] dark:bg-[#253142] my-2.5 border border-[#c0a9b0] dark:border-[#010510] text-center text-[#bcc4db] text-shadow-[2px_1px_5px_black]">
+                <div className="md:w-1/2 w-[95%] bg-[#7880b5] dark:bg-[#253142] my-2.5 border border-[#c0a9b0] dark:border-[#010510] text-center text-[#bcc4db] text-shadow-[2px_1px_5px_black]">
                     <div className="font-blackOps select-none">Your Passwords</div>
                 </div>
-                <div className="w-1/2 bg-[#7880b5] dark:bg-[#253142] border border-[#c0a9b0] dark:border-[#010510]">
+
+                {/* Table layout for tablet and PC */}
+                <div className="w-1/2 hidden md:block bg-[#7880b5] dark:bg-[#253142] border border-[#c0a9b0] dark:border-[#010510]">
                     <table className="table-fixed border-separate w-full">
                         <thead>
                             <tr>
@@ -251,7 +253,7 @@ const Password = () => {
                                 return <tr key={data.uid} className="border-2 border-black select-none">
                                     <td className="w-[30%] text-center text-black dark:text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
-                                            <span>{data.website}</span>
+                                            <span className="truncate">{data.website}</span>
                                             <CopyIcon
                                                 className="cursor-pointer"
                                                 size={16}
@@ -263,7 +265,7 @@ const Password = () => {
                                     </td>
                                     <td className="w-[30%] text-center text-black dark:text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
-                                            <span>{data.username}</span>
+                                            <span className="truncate">{data.username}</span>
                                             <CopyIcon
                                                 className="cursor-pointer"
                                                 size={16}
@@ -275,7 +277,7 @@ const Password = () => {
                                     </td>
                                     <td className="w-[30%] text-center text-black dark:text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
-                                            <span className="cursor-pointer" onClick={(e) => togglePass(e, data.password)}>********</span>
+                                            <span className="cursor-pointer truncate" onClick={(e) => togglePass(e, data.password)}>********</span>
                                             <CopyIcon
                                                 className="cursor-pointer"
                                                 size={16}
@@ -317,10 +319,81 @@ const Password = () => {
                     </table>
 
                 </div>
+
+                {/* Card Layout for Mobile */}
+                <div className="cards-container md:hidden w-[95%] flex gap-2.5 flex-wrap">
+
+                    {passArray.length > 0 ? passArray.map((data) => {
+
+                        {/* Card */ }
+                        return <div className="card w-40 h-30 p-1 flex flex-col items-center justify-center bg-[#7880b5] dark:bg-[#253142] border border-[#c0a9b0] dark:border-[#010510] " key={data.uid}>
+
+                            {/** Website detail */}
+                            <div className="w-full flex items-center justify-center gap-2 text-black dark:text-white font-semibold">
+                                <span className="w-full truncate font-bold text-[#bcc4db] text-shadow-[2px_1px_5px_black] text-lg">{data.website}</span>
+                                <CopyIcon
+                                    className="cursor-pointer"
+                                    size={16}
+                                    duration={1}
+                                    color="#ffffff"
+                                    onClick={() => handleCopy(data.username)}
+                                />
+                            </div>
+
+                            {/** Username detail */}
+                            <div className="w-full flex items-center justify-center gap-2 text-black dark:text-white font-semibold">
+                                <span className="w-full truncate" >{data.username}</span>
+                                <CopyIcon
+                                    className="cursor-pointer"
+                                    size={16}
+                                    duration={1}
+                                    color="#ffffff"
+                                    onClick={() => handleCopy(data.username)}
+                                />
+                            </div>
+
+                            {/** Password Detail */}
+                            <div className="w-full flex items-center justify-center gap-2">
+                                <span className="cursor-pointer w-full truncate" onClick={(e) => togglePass(e, data.password)}>********</span>
+                                <CopyIcon
+                                    className="cursor-pointer"
+                                    size={16}
+                                    duration={1}
+                                    color="#ffffff"
+                                    onClick={() => handleCopy(data.password)}
+                                />
+                            </div>
+
+                            {/** Edit and Delete */}
+                            <div className="flex items-center justify-center gap-2.5 mt-2">
+                                <UserPenIcon
+                                    className="cursor-pointer"
+                                    size={20}
+                                    duration={1}
+                                    color="#ffffff"
+                                    onClick={() => handleEdit(data)}
+                                />
+                                <Trash2Icon
+                                    className="cursor-pointer"
+                                    size={20}
+                                    duration={1}
+                                    color="#ffffff"
+                                    onClick={() => handleDelete(data)}
+                                />
+                            </div>
+
+                        </div>
+                    })
+                        : <div>
+                            <div className="font-blackOps text-center p-7">Nothing to show</div>
+                        </div>
+                    }
+
+                </div>
             </div>
 
             <div className={`delete-section ${deleteSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen fixed inset-0 z-10 backdrop-blur-lg justify-center pt-28`}>
-                <div className="w-1/2">
+                <div className="w-full md:w-1/2">
                     <div className="w-full text-center text-3xl font-bold text-red-600 text-shadow-[2px_1px_5px_black] underline">DELETE</div>
                     <div className="w-full flex flex-col items-center justify-center py-7">
                         <div className="w-1/2 flex gap-3.5">
@@ -357,7 +430,7 @@ const Password = () => {
             </div>
 
             <div className={`editSection fixed inset-0 ${editSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen z-10 backdrop-blur-lg justify-center pt-28`}>
-                <div className="w-1/3 space-y-2.5">
+                <div className="w-full md:w-1/3 p-5 md:p-0 space-y-2.5">
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website-edit">Website</label>
                         <input
