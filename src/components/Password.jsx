@@ -103,17 +103,6 @@ const Password = () => {
         })
     }
 
-    const togglePass = (e, pass) => {
-        let innerText = e.target.innerText;
-        console.log(innerText)
-        if (innerText === '********') {
-            e.target.innerText = pass
-        }
-        else {
-            e.target.innerText = '********'
-        }
-    }
-
     const handleUpdate = () => {
         toast('Updated')
         let updatedArr = passArray.map(item => {
@@ -278,7 +267,7 @@ const Password = () => {
                                     </td>
                                     <td className="w-[30%] text-center text-black dark:text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
-                                            <span className="cursor-pointer truncate" onClick={(e) => togglePass(e, data.password)}>********</span>
+                                            <span className="cursor-pointer truncate">{"*".repeat(data.password.length)}</span>
                                             <CopyIcon
                                                 className="cursor-pointer"
                                                 size={16}
@@ -355,7 +344,7 @@ const Password = () => {
 
                             {/** Password Detail */}
                             <div className="w-full flex items-center justify-center gap-2">
-                                <span className="cursor-pointer w-full truncate" onClick={(e) => togglePass(e, data.password)}>********</span>
+                                <span className="cursor-pointer w-full truncate">{"*".repeat(data.password.length)}</span>
                                 <CopyIcon
                                     className="cursor-pointer"
                                     size={16}
