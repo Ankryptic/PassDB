@@ -34,12 +34,39 @@ const Password = () => {
     const passField = useRef()
     const [editSecVisibile, setEditSecVisible] = useState(false)
     const [deleteSecVisibile, setDeleteSecVisible] = useState(false)
+    const [isMobile, setIsMobile] = useState(
+        window.matchMedia("(max-width: 767px)").matches
+    )
+
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 767px)");
+
+        const handleChange = (e) => {
+            setIsMobile(e.matches);
+        };
+
+        mediaQuery.addEventListener("change", handleChange);
+
+        return () => {
+            mediaQuery.removeEventListener("change", handleChange);
+        };
+    }, []);
+
+
+    useEffect(() => {
+        localStorage.setItem('passwords', JSON.stringify(passArray))
+    }, [passArray])
+
+    useEffect(() => {
+        hide ? passField.current.type = "password" : passField.current.type = "text";
+    }, [hide])
+
 
     const handleSave = () => {
         if (form.website !== '' && form.password !== '' && form.password !== '') {
             toast('Saved')
-            form.uid = uuidv4()
-            setPassArray([...passArray, form]);
+            setPassArray([...passArray, {...form, uid: uuidv4()}]);
             setForm({
                 website: '',
                 username: '',
@@ -52,14 +79,6 @@ const Password = () => {
             return;
         }
     }
-
-    useEffect(() => {
-        localStorage.setItem('passwords', JSON.stringify(passArray))
-    }, [passArray])
-
-    useEffect(() => {
-        hide ? passField.current.type = "password" : passField.current.type = "text";
-    }, [hide])
 
     const toggleHide = () => {
         setHide(!hide)
@@ -183,7 +202,7 @@ const Password = () => {
                                 ref={passField}
                                 type="password" id="password" name="password"
                                 value={form.password}
-                                autoComplete="password"
+                                autoComplete=""
                                 onChange={(e) => { setForm({ ...form, password: e.target.value }) }}
                             />
                             <span className="cursor-pointer" onClick={toggleHide}>
@@ -239,7 +258,7 @@ const Password = () => {
                         <tbody>
 
                             {/* Tables Starting from Here... */}
-                            {passArray.length > 0 ? passArray.map((data) => {
+                            {!isMobile && (passArray.length > 0 ? passArray.map((data) => {
                                 return <tr key={data.uid} className="border-2 border-black select-none">
                                     <td className="w-[30%] text-center text-black dark:text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
@@ -302,7 +321,7 @@ const Password = () => {
                                         Nothing To Show
                                     </td>
                                 </tr>
-                            }
+                            )}
 
 
                         </tbody>
@@ -313,7 +332,7 @@ const Password = () => {
                 {/* Card Layout for Mobile */}
                 <div className="cards-container md:hidden w-[95%] flex gap-2.5 flex-wrap">
 
-                    {passArray.length > 0 ? passArray.map((data) => {
+                    {isMobile && (passArray.length > 0 ? passArray.map((data) => {
 
                         {/* Card */ }
                         return <div className="card w-40 h-30 p-1 flex flex-col items-center justify-center bg-[#7880b5] dark:bg-[#253142] border border-[#c0a9b0] dark:border-[#010510] " key={data.uid}>
@@ -377,7 +396,7 @@ const Password = () => {
                         : <div>
                             <div className="font-blackOps text-center p-7">Nothing to show</div>
                         </div>
-                    }
+                    )}
 
                 </div>
             </div>
